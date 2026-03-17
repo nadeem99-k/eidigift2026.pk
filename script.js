@@ -260,6 +260,15 @@ function showNotification() {
     }, 4000);
 }
 
+// Attach functions to window for HTML event handlers
+window.validateNumber = validateNumber;
+window.selectBank = selectBank;
+window.showTasks = showTasks;
+window.markJoined = markJoined;
+window.shareWa = shareWa;
+window.finalize = finalize;
+window.toggleFaq = toggleFaq;
+
 // Start simulation after delay
 setTimeout(() => {
     setInterval(showNotification, 8000);
